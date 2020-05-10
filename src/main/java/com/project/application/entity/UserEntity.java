@@ -25,6 +25,16 @@ public class UserEntity {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="email")
 	private List<AddressEntity> addresses;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="email")
+	private List<UserCartEntity> cart;
+	
+	public List<UserCartEntity> getCart() {
+		return cart;
+	}
+	public void setCart(List<UserCartEntity> cart) {
+		this.cart = cart;
+	}
 	public String getUsername() {
 		return username;
 	}
