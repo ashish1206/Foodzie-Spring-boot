@@ -48,13 +48,12 @@ public class CartDAOiml implements CartDAO {
 		UserEntity ue = em.find(UserEntity.class, email);
 		List<UserCartEntity> uceList = ue.getCart();
 		UserCartEntity uce = new UserCartEntity();
-		MenuEntity menuEntity = new MenuEntity();
-		menuEntity.setDishName(dish.getDishName());
-		menuEntity.setDescription(dish.getDescription());
-		menuEntity.setPrice(menuEntity.getPrice());
+		MenuEntity menuEntity = em.find(MenuEntity.class, dish.getdId());
 		uce.setMenu(menuEntity);
 		uce.setQuantity(dish.getQuantity());
 		uceList.add(uce);
+		ue.getCart().add(uce);
+		em.persist(ue);
 	}
 
 	@Override
