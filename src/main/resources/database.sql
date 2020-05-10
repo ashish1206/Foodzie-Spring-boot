@@ -36,10 +36,28 @@ CREATE TABLE "menu"(
 	dish_name VARCHAR(50) NOT null,
 	description VARCHAR(100),
 	price decimal NOT NULL,
-	email VARCHAR(50) unique,
+	email VARCHAR(50),
 	constraint menu_d_id_PK primary key ( d_id )
 );
 
 ALTER TABLE menu 
 ADD CONSTRAINT address_email_fk FOREIGN KEY ( email ) 
 REFERENCES "seller"( email );
+
+CREATE TABLE "cart"(
+	cart_id SERIAL not null,
+	quantity INT NOT null,
+	d_id INT,
+	email VARCHAR(50) ,
+	constraint cart_cart_id_PK primary key ( cart_id )
+);
+
+ALTER TABLE cart 
+ADD CONSTRAINT cart_email_fk FOREIGN KEY ( email ) 
+REFERENCES "user"( email );
+
+ALTER TABLE cart 
+ADD CONSTRAINT cart_d_id_fk FOREIGN KEY ( d_id ) 
+REFERENCES "menu"( d_id );
+
+commit;
