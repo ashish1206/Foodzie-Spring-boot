@@ -28,7 +28,17 @@ public class UserEntity {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="email")
 	private List<UserCartEntity> cart;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="email")
+	private List<OrderEntity> orders;
 	
+	
+	public List<OrderEntity> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<OrderEntity> orders) {
+		this.orders = orders;
+	}
 	public List<UserCartEntity> getCart() {
 		return cart;
 	}
