@@ -1,5 +1,7 @@
 package com.project.application.entity;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +12,28 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="order")
-public class OrderEntity {
+@Table(name="order_menu_mapping", schema="public")
+public class OrderMenuMappingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ordeId;
-	private Integer quantity;
+	private Integer id;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "d_id")
+	@JoinColumn(name="d_id")
 	private MenuEntity dish;
-	public Integer getOrdeId() {
-		return ordeId;
+	private Integer quantity;
+	private Double totalPrice;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setOrdeId(Integer ordeId) {
-		this.ordeId = ordeId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public MenuEntity getDish() {
+		return dish;
+	}
+	public void setDish(MenuEntity dish) {
+		this.dish = dish;
 	}
 	public Integer getQuantity() {
 		return quantity;
@@ -31,11 +41,11 @@ public class OrderEntity {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public MenuEntity getDish() {
-		return dish;
+	public Double getTotalPrice() {
+		return totalPrice;
 	}
-	public void setDish(MenuEntity dish) {
-		this.dish = dish;
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	
 }

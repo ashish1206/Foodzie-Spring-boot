@@ -4,14 +4,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.project.application.model.Address;
 
 @Entity
 @Table(name="user", schema = "public")
@@ -30,13 +27,13 @@ public class UserEntity {
 	private List<UserCartEntity> cart;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="email")
-	private List<OrderEntity> orders;
+	private List<OrderUserMappingEntity> orders;
 	
 	
-	public List<OrderEntity> getOrders() {
+	public List<OrderUserMappingEntity> getOrders() {
 		return orders;
 	}
-	public void setOrders(List<OrderEntity> orders) {
+	public void setOrders(List<OrderUserMappingEntity> orders) {
 		this.orders = orders;
 	}
 	public List<UserCartEntity> getCart() {

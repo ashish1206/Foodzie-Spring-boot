@@ -60,4 +60,41 @@ ALTER TABLE cart
 ADD CONSTRAINT cart_d_id_fk FOREIGN KEY ( d_id ) 
 REFERENCES "menu"( d_id );
 
+CREATE TABLE "order_user_mapping"(
+	order_id serial not null,
+	user_email VARCHAR(50),
+	seller_email varchar(50),
+	add_id int,
+	constraint order_user_mapping_order_id_PK primary key ( order_id )
+);
+
+ALTER TABLE order_user_mapping 
+ADD CONSTRAINT order_user_mapping_user_email_fk FOREIGN KEY ( user_email ) 
+REFERENCES "user"( email );
+
+ALTER TABLE order_user_mapping 
+ADD CONSTRAINT order_user_mapping_seller_email_fk FOREIGN KEY ( seller_email ) 
+REFERENCES "seller"( email );
+
+ALTER TABLE order_user_mapping 
+ADD CONSTRAINT order_user_mapping_add_id_fk FOREIGN KEY ( add_id ) 
+REFERENCES "address"( add_id );
+
+CREATE TABLE "order_menu_mapping"(
+	id serial,
+	order_id int,
+	d_id int,
+	quantity int not null,
+	total_price decimal not null,
+	constraint order_menu_mapping_id_PK primary key ( id )
+);
+
+ALTER TABLE order_menu_mapping 
+ADD CONSTRAINT order_menu_mapping_order_id_fk FOREIGN KEY ( order_id ) 
+REFERENCES "order_user_mapping"( order_id);
+
+ALTER TABLE order_menu_mapping 
+ADD CONSTRAINT order_menu_mapping_d_id_fk FOREIGN KEY ( d_id ) 
+REFERENCES "menu"( d_id );
+
 commit;
