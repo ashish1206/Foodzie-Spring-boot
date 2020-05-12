@@ -18,7 +18,7 @@ public class OrderServiceIml implements OrderService {
 	@Override
 	public List<Order> getOrders(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return orderDAO.getOrders(email);
 	}
 
 	@Override
@@ -31,6 +31,12 @@ public class OrderServiceIml implements OrderService {
 	public Integer placeOrder(Order order) {
 		// TODO Auto-generated method stub
 		return orderDAO.placeOrder(order);
+	}
+
+	@Override
+	public List<Order> getSellerOrder(String sellerEmail) {
+		// TODO Auto-generated method stub
+		return orderDAO.getSellerOrder(sellerEmail);
 	}
 
 }

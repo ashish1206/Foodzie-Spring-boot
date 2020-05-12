@@ -10,4 +10,6 @@ public interface OrderDAO {
 	public Order getOrderDetails(Integer orderId);
 	
 	public Integer placeOrder(Order order);
+	
+	public List<Order> getSellerOrder(String sellerEmail);
 }

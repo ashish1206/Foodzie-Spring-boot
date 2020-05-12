@@ -26,7 +26,7 @@ public class UserEntity {
 	@JoinColumn(name="email")
 	private List<UserCartEntity> cart;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="email")
+	@JoinColumn(name="user_email")
 	private List<OrderUserMappingEntity> orders;
 	
 	

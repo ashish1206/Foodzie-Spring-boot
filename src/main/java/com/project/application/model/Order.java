@@ -8,8 +8,16 @@ public class Order {
 	private Integer addId;
 	private List<Menu> dishes;
 	private String sellerEmail;
+	private Address address;
 	private Date date;
 	
+	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	public String getUserEmail() {
 		return userEmail;
 	}

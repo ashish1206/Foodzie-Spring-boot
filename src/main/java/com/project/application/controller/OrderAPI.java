@@ -23,7 +23,14 @@ public class OrderAPI {
 	OrderService orderService;
 	@GetMapping(value="/getorder")
 	public ResponseEntity<List<Order>> getOrders(@RequestParam String email){
-		return null;
+		List<Order> orders = orderService.getOrders(email);
+		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/getsellerorder")
+	public ResponseEntity<List<Order>> getSellerOrder(@RequestParam String sellerEmail){
+		List<Order> orders = orderService.getSellerOrder(sellerEmail);
+		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/orderbyid")

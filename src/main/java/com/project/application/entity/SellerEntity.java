@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.project.application.model.Order;
+
 
 @Entity
 @Table(name="seller", schema = "public")
@@ -27,6 +29,16 @@ public class SellerEntity {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "email", unique = true)
 	private List<MenuEntity> menu;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="seller_email")
+	private List<OrderUserMappingEntity> ordersUserMappingEntity;
+	
+	public List<OrderUserMappingEntity> getOrdersUserMappingEntity() {
+		return ordersUserMappingEntity;
+	}
+	public void setOrdersUserMappingEntity(List<OrderUserMappingEntity> ordersUserMappingEntity) {
+		this.ordersUserMappingEntity = ordersUserMappingEntity;
+	}
 	public String getsName() {
 		return sName;
 	}
