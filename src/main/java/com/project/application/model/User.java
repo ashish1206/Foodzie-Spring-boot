@@ -6,10 +6,18 @@ public class User {
 
 	private String username;
 	private String password;
+	private String newPassword;
 	private String email;
 	private String phoneNumber;
 	private List<Address> addresses;
 	
+	
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 	public String getPassword() {
 		return password;
 	}

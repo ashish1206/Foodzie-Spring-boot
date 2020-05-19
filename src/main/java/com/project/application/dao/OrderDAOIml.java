@@ -33,6 +33,7 @@ public class OrderDAOIml implements OrderDAO {
 		List<Order> orders = new ArrayList<Order>();
 		for( OrderUserMappingEntity oume : oumeList) {
 			Order order = new Order();
+			order.setOrderId(oume.getOrderId());
 			order.setSellerEmail(oume.getSeller().getEmail());
 			List<Menu> dishes = new ArrayList<Menu>();
 			List<OrderMenuMappingEntity> ommeList = oume.getOrderMenuMappingEntity();
@@ -47,16 +48,15 @@ public class OrderDAOIml implements OrderDAO {
 				dishes.add(dish);
 			}
 			order.setDishes(dishes);
-			AddressEntity ae = oume.getAddress();
-			Address address = new Address();
-			if(ae !=null) {
-				address.setAddressLine1(ae.getAddressLine1());
-				address.setAddressLine2(ae.getAddressLine2());
-				address.setCity(ae.getCity());
-				address.setPin(ae.getPin());
-				address.setState(ae.getState());
-				order.setAddress(address);
-			}
+//			AddressEntity ae = oume.getAddress();
+			order.setAddress(oume.getAddress());
+//			if(ae !=null) {
+//				address.setAddressLine1(ae.getAddressLine1());
+//				address.setAddressLine2(ae.getAddressLine2());
+//				address.setCity(ae.getCity());
+//				address.setState(ae.getState());
+//				order.setAddress(address);
+//			}
 			orders.add(order);
 		}
 		return orders;
@@ -74,10 +74,11 @@ public class OrderDAOIml implements OrderDAO {
 		OrderUserMappingEntity oume = new OrderUserMappingEntity();
 		UserEntity ue = em.find(UserEntity.class, order.getUserEmail());
 		SellerEntity se = em.find(SellerEntity.class, order.getSellerEmail());
-		AddressEntity ae = em.find(AddressEntity.class, order.getAddId());
+//		AddressEntity ae = em.find(AddressEntity.class, order.getAddId());
 		oume.setUser(ue);
 		oume.setSeller(se);
-		oume.setAddress(ae);
+		String addStr = order.getAddress();
+		oume.setAddress(addStr);
 		List<OrderMenuMappingEntity> ommeList = new ArrayList<OrderMenuMappingEntity>();
 		List<Menu> dishes = order.getDishes();
 		for(Menu dish : dishes) {
@@ -101,6 +102,7 @@ public class OrderDAOIml implements OrderDAO {
 		List<Order> orders = new ArrayList<Order>();
 		for(OrderUserMappingEntity oume : oumeList) {
 			Order order = new Order();
+			order.setOrderId(oume.getOrderId());
 			order.setUserEmail(oume.getUser().getEmail());
 			List<OrderMenuMappingEntity> ommeList = oume.getOrderMenuMappingEntity();
 			List<Menu> dishes = new ArrayList<Menu>();

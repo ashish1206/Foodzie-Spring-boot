@@ -3,6 +3,7 @@ package com.project.application.dao;
 import java.util.List;
 
 import com.project.application.model.Seller;
+import com.project.application.model.Address;
 import com.project.application.model.Menu;
 
 public interface SellerDAO {
@@ -15,4 +16,6 @@ public interface SellerDAO {
 	public void addMenu(String email, Menu menu);
 	
 	public List<Seller> getSellersByCity(String city);
+
+	public String updateAddress(Address address);
 }

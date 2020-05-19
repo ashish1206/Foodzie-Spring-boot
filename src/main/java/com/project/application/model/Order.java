@@ -4,20 +4,33 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+	private Integer orderId;
 	private String userEmail;
 	private Integer addId;
 	private List<Menu> dishes;
 	private String sellerEmail;
-	private Address address;
+	private String address;
 	private Date date;
 	
 	
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
+	public Integer getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+//	public Address getAddress() {
+//		return address;
+//	}
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 	public String getUserEmail() {
 		return userEmail;
 	}

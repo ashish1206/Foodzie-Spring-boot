@@ -35,7 +35,6 @@ public class SellerDAOIml implements SellerDAO{
 				address.setAddressLine1(ae.getAddressLine1());
 				address.setAddressLine2(ae.getAddressLine2());
 				address.setCity(ae.getCity());
-				address.setPin(ae.getPin());
 				address.setState(ae.getState());
 				seller.setAddress(address);
 			}
@@ -58,15 +57,39 @@ public class SellerDAOIml implements SellerDAO{
 		se.setsName(seller.getsName());
 		se.setPassword(seller.getPassword());
 		se.setPhoneNumber(seller.getPhoneNumber());
-		AddressEntity ae = new AddressEntity();
-		Address address = seller.getAddress();
-		ae.setAddressLine1(address.getAddressLine1());
-		ae.setAddressLine2(address.getAddressLine2());
-		ae.setCity(address.getCity());
-		ae.setPin(address.getPin());
-		ae.setState(address.getState());
-		se.setAddress(ae);
+//		AddressEntity ae = new AddressEntity();
+//		Address address = seller.getAddress();
+//		ae.setAddressLine1(address.getAddressLine1());
+//		ae.setAddressLine2(address.getAddressLine2());
+//		ae.setCity(address.getCity());
+//		ae.setPin(address.getPin());
+//		ae.setState(address.getState());
+//		se.setAddress(ae);
 		em.persist(se);
+		return se.getsName();
+	}
+	
+	@Override
+	public String updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		SellerEntity se = em.find(SellerEntity.class, address.getEmail());
+		if(se.getAddress()==null) {
+			AddressEntity ae = new AddressEntity();
+			ae.setAddressLine1(address.getAddressLine1());
+			ae.setAddressLine2(address.getAddressLine2());
+			ae.setCity(address.getCity());
+			ae.setState(address.getState());
+			se.setAddress(ae);
+		}
+		else {
+			AddressEntity ae = se.getAddress();
+			ae.setAddressLine1(address.getAddressLine1());
+			ae.setAddressLine2(address.getAddressLine2());
+			ae.setCity(address.getCity());
+			ae.setState(address.getState());
+			se.setAddress(ae);
+		}
+//		em.persist(se);
 		return se.getsName();
 	}
 
@@ -120,7 +143,6 @@ public class SellerDAOIml implements SellerDAO{
 			address.setAddressLine1(ae.getAddressLine1());
 			address.setAddressLine2(ae.getAddressLine2());
 			address.setCity(ae.getCity());
-			address.setPin(ae.getPin());
 			address.setState(ae.getState());
 			seller.setAddress(address);
 			sellers.add(seller);

@@ -1,15 +1,23 @@
 package com.project.application.model;
 
 public class Address {
+	private Integer addId;
 	private String addressLine1;
 	private String addressLine2;
 	private String city;
 	private String state;
-	private String pin;
 	private String email;
+	
+	
 	
 	public String getEmail() {
 		return email;
+	}
+	public Integer getAddId() {
+		return addId;
+	}
+	public void setAddId(Integer addId) {
+		this.addId = addId;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -37,12 +45,6 @@ public class Address {
 	}
 	public void setState(String state) {
 		this.state = state;
-	}
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
 	}
 	
 }

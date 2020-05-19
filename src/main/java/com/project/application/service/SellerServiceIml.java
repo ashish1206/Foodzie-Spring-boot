@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.application.dao.SellerDAO;
+import com.project.application.model.Address;
 import com.project.application.model.Menu;
 import com.project.application.model.Seller;
 
@@ -70,5 +71,12 @@ public class SellerServiceIml implements SellerService {
 		else {
 			throw new Exception("sellers not found");
 		}
+	}
+
+	@Override
+	public String updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		String res = sellerDAO.updateAddress(address);
+		return res;
 	}
 }

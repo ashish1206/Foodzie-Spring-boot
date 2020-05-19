@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.application.dao.SellerDAO;
 import com.project.application.dao.UserDAO;
 import com.project.application.model.Address;
 import com.project.application.model.User;
@@ -42,6 +43,26 @@ public class UserServiceIml implements UserService {
 	public void addAddress(Address address, String email) {
 		// TODO Auto-generated method stub
 		userDAO.addUserAddress(address, email);
+	}
+
+	@Override
+	public String changePassword(User user) {
+		// TODO Auto-generated method stub
+		userDAO.changePassword(user);
+		return "success";
+	}
+
+	@Override
+	public String updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		userDAO.updateAddress(address);
+		return "updated";
+	}
+
+	@Override
+	public void deleteAddress(Integer addId) {
+		// TODO Auto-generated method stub
+		userDAO.deleteAddress(addId);
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.project.application.service;
 import java.util.List;
 
 import com.project.application.model.Seller;
+import com.project.application.model.Address;
 import com.project.application.model.Menu;
 
 public interface SellerService {
@@ -15,4 +16,6 @@ public interface SellerService {
 	public void addMenu(String email, Menu menu);
 	
 	public List<Seller> getSellersByCity(String city) throws Exception;
+	
+	public String updateAddress(Address address);
 }

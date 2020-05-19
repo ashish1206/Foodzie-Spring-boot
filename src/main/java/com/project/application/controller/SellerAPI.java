@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,16 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.project.application.model.Seller;
+import com.project.application.model.Address;
 import com.project.application.model.Menu;
 import com.project.application.service.SellerService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value="/seller")
 public class SellerAPI {
 	@Autowired
 	SellerService sellerService;
 	
-	@GetMapping(value="/login")
+	@PostMapping(value="/login")
 	public ResponseEntity<Seller> login(@RequestBody Seller seller) {
 		try {
 			String email,password;
@@ -78,8 +81,9 @@ public class SellerAPI {
 		}
 	}
 	
-//	@PutMapping(value="/address")
-//	public void updateAddress(@RequestBody Address address, @RequestBody String sellername) {
-//		
-//	}
+	@PutMapping(value="/address")
+	public ResponseEntity<String> updateAddress(@RequestBody Address address) {
+		String res = sellerService.updateAddress(address);
+		return new ResponseEntity<String>(res, HttpStatus.OK);
+	}
 }

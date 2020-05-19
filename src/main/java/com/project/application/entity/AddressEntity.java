@@ -20,7 +20,6 @@ public class AddressEntity {
 	private String addressLine2;
 	private String city;
 	private String state;
-	private String pin;
 	public Integer getAddressId() {
 		return addressId;
 	}
@@ -50,12 +49,6 @@ public class AddressEntity {
 	}
 	public void setState(String state) {
 		this.state = state;
-	}
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
 	}
 	
 }

@@ -41,10 +41,10 @@ public class UserDAOIml implements UserDAO {
 			List<Address> addresses = new ArrayList<Address>();
 			for(AddressEntity ae : addressEntity) {
 				Address address = new Address();
+				address.setAddId(ae.getAddressId());
 				address.setAddressLine1(ae.getAddressLine1());
 				address.setAddressLine2(ae.getAddressLine2());
 				address.setCity(ae.getCity());
-				address.setPin(ae.getPin());
 				address.setState(ae.getState());
 				addresses.add(address);
 			}
@@ -90,12 +90,40 @@ public class UserDAOIml implements UserDAO {
 		ae.setAddressLine1(address.getAddressLine1());
 		ae.setAddressLine2(address.getAddressLine2());
 		ae.setCity(address.getCity());
-		ae.setPin(address.getPin());
 		ae.setState(address.getState());
 		List<AddressEntity> aeList = ue.getAddresses();
 		aeList.add(ae);
 		ue.setAddresses(aeList);
 //		em.persist(ue);
 	}
-	
+
+	@Override
+	public void changePassword(User user) {
+		// TODO Auto-generated method stub
+		UserEntity ue = em.find(UserEntity.class, user.getEmail());
+		if(ue.getPassword().equals(user.getPassword())) {
+			ue.setPassword(user.getNewPassword());
+		}
+		else {
+			
+		}
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		// TODO Auto-generated method stub
+		AddressEntity ae = em.find(AddressEntity.class, address.getAddId());
+		ae.setAddressLine1(address.getAddressLine1());
+		ae.setAddressLine2(address.getAddressLine2());
+		ae.setCity(address.getCity());
+		ae.setState(address.getState());
+	}
+
+	@Override
+	public void deleteAddress(Integer addId) {
+		// TODO Auto-generated method stub
+		AddressEntity ae = em.find(AddressEntity.class, addId);
+		em.remove(ae);
+	}
+		
 }

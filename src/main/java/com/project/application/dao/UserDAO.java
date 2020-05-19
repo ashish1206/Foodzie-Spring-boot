@@ -12,5 +12,10 @@ public interface UserDAO {
 	public String addUser(User user);
 	
 	public void addUserAddress(Address address, String email);
+	
+	public void changePassword(User user);
+	
+	public void updateAddress(Address address);
 
+	public void deleteAddress(Integer addId);
 }

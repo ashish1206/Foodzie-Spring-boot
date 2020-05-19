@@ -22,16 +22,24 @@ public class OrderUserMappingEntity {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_email")
 	private UserEntity user;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="add_id")
-	private AddressEntity address;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="add_id")
+//	private AddressEntity address;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="seller_email")
 	private SellerEntity seller;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="order_id")
 	private List<OrderMenuMappingEntity> orderMenuMappingEntity;
+	private String address;
 	
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public List<OrderMenuMappingEntity> getOrderMenuMappingEntity() {
 		return orderMenuMappingEntity;
 	}
@@ -50,12 +58,12 @@ public class OrderUserMappingEntity {
 	public void setUser(UserEntity user) {
 		this.user = user;
 	}
-	public AddressEntity getAddress() {
-		return address;
-	}
-	public void setAddress(AddressEntity address) {
-		this.address = address;
-	}
+//	public AddressEntity getAddress() {
+//		return address;
+//	}
+//	public void setAddress(AddressEntity address) {
+//		this.address = address;
+//	}
 	public SellerEntity getSeller() {
 		return seller;
 	}
