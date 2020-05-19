@@ -64,5 +64,12 @@ public class UserServiceIml implements UserService {
 		// TODO Auto-generated method stub
 		userDAO.deleteAddress(addId);
 	}
+
+	@Override
+	public String updateUserDetails(User user) {
+		// TODO Auto-generated method stub
+		userDAO.updateUserDetails(user);
+		return "updated";
+	}
 	
 }

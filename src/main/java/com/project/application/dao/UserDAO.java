@@ -18,4 +18,6 @@ public interface UserDAO {
 	public void updateAddress(Address address);
 
 	public void deleteAddress(Integer addId);
+	
+	public void updateUserDetails(User user);
 }

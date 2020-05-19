@@ -84,4 +84,10 @@ public class UserAPI {
 		String res = userService.updateAddress(address);
 		return new ResponseEntity<String>("updates", HttpStatus.OK);
 	}
+	
+	@PutMapping(value="/updatedetails")
+	public ResponseEntity<String> updateUserDetails(@RequestBody User user){
+		String res = userService.updateUserDetails(user);
+		return new ResponseEntity<String>(res, HttpStatus.OK);
+	}
 }

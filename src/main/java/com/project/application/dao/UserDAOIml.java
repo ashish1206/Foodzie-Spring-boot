@@ -24,13 +24,7 @@ public class UserDAOIml implements UserDAO {
 	@Override
 	public User checkLogin(String username, String password, String email) {
 		// TODO Auto-generated method stub
-		String sql;
-		if(username != null) {
-			sql = "select u from UserEntity u where u.username = '" + username + "' and u.password = '" + password+"'";
-		}
-		else {
-			sql = "select u from UserEntity u where u.email = '" + email + "' and u.password = '" + password+"'";
-		}
+		String sql = "select u from UserEntity u where u.email = '" + email + "' and u.password = '" + password+"'";
 		UserEntity userEntity = em.createQuery(sql, UserEntity.class).getSingleResult();
 		if(userEntity != null) {
 			User user = new User();
@@ -124,6 +118,16 @@ public class UserDAOIml implements UserDAO {
 		// TODO Auto-generated method stub
 		AddressEntity ae = em.find(AddressEntity.class, addId);
 		em.remove(ae);
+	}
+
+	@Override
+	public void updateUserDetails(User user) {
+		// TODO Auto-generated method stub
+		UserEntity ue = em.find(UserEntity.class, user.getEmail());
+//		ue.setEmail(ue.getEmail());
+//		ue.setPassword();
+		ue.setUsername(user.getUsername());
+		ue.setPhoneNumber(user.getPhoneNumber());
 	}
 		
 }

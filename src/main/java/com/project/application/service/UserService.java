@@ -17,5 +17,7 @@ public interface UserService {
 	public String updateAddress(Address address);
 	
 	public void deleteAddress(Integer addId);
+	
+	public String updateUserDetails(User user);
 
 }
