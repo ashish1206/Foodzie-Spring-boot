@@ -6,7 +6,6 @@ import java.util.List;
 public class Order {
 	private Integer orderId;
 	private String userEmail;
-	private Integer addId;
 	private List<Menu> dishes;
 	private String sellerEmail;
 	private String address;
@@ -37,12 +36,12 @@ public class Order {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public Integer getAddId() {
-		return addId;
-	}
-	public void setAddId(Integer addId) {
-		this.addId = addId;
-	}
+//	public Integer getAddId() {
+//		return addId;
+//	}
+//	public void setAddId(Integer addId) {
+//		this.addId = addId;
+//	}
 	public String getSellerEmail() {
 		return sellerEmail;
 	}

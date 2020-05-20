@@ -102,6 +102,7 @@ public class SellerDAOIml implements SellerDAO{
 			List<Menu> menuList = new ArrayList<Menu>();
 			for(MenuEntity menuEntity : me) {
 				Menu menu = new Menu();
+				menu.setdId(menuEntity.getdId());
 				menu.setDishName(menuEntity.getDishName());
 				menu.setDescription(menuEntity.getDescription());
 				menu.setPrice(menuEntity.getPrice());

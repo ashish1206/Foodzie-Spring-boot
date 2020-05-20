@@ -64,7 +64,7 @@ CREATE TABLE "order_user_mapping"(
 	order_id serial not null,
 	user_email VARCHAR(50),
 	seller_email varchar(50),
-	address varchar(50) not null,
+	address varchar(150) not null,
 	constraint order_user_mapping_order_id_PK primary key ( order_id )
 );
 
