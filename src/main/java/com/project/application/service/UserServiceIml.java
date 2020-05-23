@@ -1,5 +1,7 @@
 package com.project.application.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +72,18 @@ public class UserServiceIml implements UserService {
 		// TODO Auto-generated method stub
 		userDAO.updateUserDetails(user);
 		return "updated";
+	}
+
+	@Override
+	public User getUserByEmail(String userEmail) {
+		User user = userDAO.getUserByEmail(userEmail);
+		return user;
+	}
+
+	@Override
+	public User getUserDetailsByUseremail(String userEmail) {
+		// TODO Auto-generated method stub
+		return userDAO.getUserDetailsByUseremail(userEmail);
 	}
 	
 }

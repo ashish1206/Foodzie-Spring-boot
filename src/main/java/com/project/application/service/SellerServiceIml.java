@@ -79,4 +79,18 @@ public class SellerServiceIml implements SellerService {
 		String res = sellerDAO.updateAddress(address);
 		return res;
 	}
+
+	@Override
+	public String changePassword(Seller seller) {
+		// TODO Auto-generated method stub
+		sellerDAO.changePassword(seller);
+		return "password updated";
+	}
+
+	@Override
+	public String updateSellerDetails(Seller seller) {
+		// TODO Auto-generated method stub
+		sellerDAO.updateSellerDetails(seller);
+		return "details updated";
+	}
 }

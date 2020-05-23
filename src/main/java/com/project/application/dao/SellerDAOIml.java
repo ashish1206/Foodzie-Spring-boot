@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.project.application.entity.AddressEntity;
 import com.project.application.entity.MenuEntity;
 import com.project.application.entity.SellerEntity;
+import com.project.application.entity.UserEntity;
 import com.project.application.model.Address;
 import com.project.application.model.Menu;
 import com.project.application.model.Seller;
@@ -149,5 +150,23 @@ public class SellerDAOIml implements SellerDAO{
 			sellers.add(seller);
 		}
 		return sellers;
+	}
+
+	@Override
+	public void changePassword(Seller seller) {
+		// TODO Auto-generated method stub
+		String sql = "select s from SellerEntity s where s.email = '" + seller.getEmail() + "' and s.password = '" +  seller.getPassword() + "'";
+		SellerEntity se = em.createQuery(sql, SellerEntity.class).getSingleResult();
+		if(se!=null) {
+			se.setPassword(seller.getNewPassword());
+		}
+	}
+
+	@Override
+	public void updateSellerDetails(Seller seller) {
+		// TODO Auto-generated method stub
+		SellerEntity se = em.find(SellerEntity.class, seller.getEmail());
+		se.setsName(seller.getsName());
+		se.setPhoneNumber(seller.getPhoneNumber());
 	}
 }

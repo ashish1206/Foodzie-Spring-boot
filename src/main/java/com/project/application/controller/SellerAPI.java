@@ -86,4 +86,16 @@ public class SellerAPI {
 		String res = sellerService.updateAddress(address);
 		return new ResponseEntity<String>(res, HttpStatus.OK);
 	}
+	
+	@PutMapping(value="/changepass")
+	public ResponseEntity<String> changePassword(@RequestBody Seller seller){
+		String res = sellerService.changePassword(seller);
+		return new ResponseEntity<String>(res, HttpStatus.OK);
+	}
+	
+	@PutMapping(value="/updatedetails")
+	public ResponseEntity<String> updateSellerDetails(@RequestBody Seller seller){
+		String res = sellerService.updateSellerDetails(seller);
+		return new ResponseEntity<String>(res, HttpStatus.OK);
+	}
 }

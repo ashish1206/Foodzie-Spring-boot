@@ -129,5 +129,39 @@ public class UserDAOIml implements UserDAO {
 		ue.setUsername(user.getUsername());
 		ue.setPhoneNumber(user.getPhoneNumber());
 	}
+
+	@Override
+	public User getUserByEmail(String userEmail) {
+		// TODO Auto-generated method stub
+//		String sql = "select u.email, u.password from UserEntity u where u.email = '" + userEmail +"'";
+//		UserEntity ue = em.createQuery(sql, UserEntity.class).getSingleResult();
+		UserEntity ue = em.find(UserEntity.class, userEmail);
+		User user = new User();
+		user.setEmail(ue.getEmail());
+		user.setPassword(ue.getPassword());
+		return user;
+	}
+
+	@Override
+	public User getUserDetailsByUseremail(String userEmail) {
+		UserEntity ue = em.find(UserEntity.class, userEmail);
+		User user = new User();
+		user.setUsername(ue.getUsername());
+		user.setEmail(ue.getEmail());
+		user.setPhoneNumber(ue.getPhoneNumber());
+		List<AddressEntity> addressEntity = ue.getAddresses();
+		List<Address> addresses = new ArrayList<Address>();
+		for(AddressEntity ae : addressEntity) {
+			Address address = new Address();
+			address.setAddId(ae.getAddressId());
+			address.setAddressLine1(ae.getAddressLine1());
+			address.setAddressLine2(ae.getAddressLine2());
+			address.setCity(ae.getCity());
+			address.setState(ae.getState());
+			addresses.add(address);
+		}
+		user.setAddresses(addresses);
+		return user;
+	}
 		
 }

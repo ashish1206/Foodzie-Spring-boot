@@ -7,6 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,8 +26,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.project.application.dao.UserDAO;
 import com.project.application.model.Address;
+import com.project.application.model.AuthenticationResponse;
 import com.project.application.model.Seller;
 import com.project.application.model.User;
+import com.project.application.security.JwtUtil;
 import com.project.application.service.UserService;
 
 @CrossOrigin
@@ -34,18 +40,36 @@ public class UserAPI {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
+	@Autowired
+	UserDetailsService userDetailsService;
+	
+	@Autowired
+	JwtUtil jwtUtil;
+	
 	static Logger logger = LogManager.getLogger(UserAPI.class);
 	
 	@PostMapping(value="/login")
-	public ResponseEntity<User> login(@RequestBody User user) {
+	public ResponseEntity<User> login(@RequestBody User userReq) {
+		User user;
 		try {
-			String username = user.getUsername(), password = user.getPassword(), email = user.getEmail();
-			User userRes = userService.login(username, password, email);
-			return new ResponseEntity<User>(userRes, HttpStatus.OK);
+//			String username = user.getUsername(), password = user.getPassword(), email = user.getEmail();
+//			User userRes = userService.login(username, password, email);
+//			return new ResponseEntity<User>(userRes, HttpStatus.OK);
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(userReq.getEmail(), userReq.getPassword()));
+			user = userService.getUserDetailsByUseremail(userReq.getEmail());
 		}
 		catch(Exception ex) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, ex.getMessage());
 		}
+		final UserDetails userDetails = userDetailsService
+				.loadUserByUsername(userReq.getEmail());
+		final String jwt = jwtUtil.generateToken(userDetails);
+		user.setJwt(jwt);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/signup")

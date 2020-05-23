@@ -18,4 +18,8 @@ public interface SellerService {
 	public List<Seller> getSellersByCity(String city) throws Exception;
 	
 	public String updateAddress(Address address);
+	
+	public String changePassword(Seller seller);
+	
+	public String updateSellerDetails(Seller seller);
 }

@@ -18,4 +18,8 @@ public interface SellerDAO {
 	public List<Seller> getSellersByCity(String city);
 
 	public String updateAddress(Address address);
+	
+	public void changePassword(Seller seller);
+	
+	public void updateSellerDetails(Seller seller);
 }

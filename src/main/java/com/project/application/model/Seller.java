@@ -4,10 +4,18 @@ package com.project.application.model;
 public class Seller {
 	private String sName;
 	private String password;
+	private String newPassword;
 	private String email;
 	private String phoneNumber;
 	private Address address;
 	
+	
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 	public String getsName() {
 		return sName;
 	}

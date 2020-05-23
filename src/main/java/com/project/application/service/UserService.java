@@ -1,6 +1,8 @@
 package com.project.application.service;
 
 
+import java.util.List;
+
 import com.project.application.model.Address;
 import com.project.application.model.User;
 
@@ -20,4 +22,7 @@ public interface UserService {
 	
 	public String updateUserDetails(User user);
 
+	public User getUserByEmail(String userEmail);
+	
+	public User getUserDetailsByUseremail(String userEmail);
 }
